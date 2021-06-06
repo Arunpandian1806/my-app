@@ -1,6 +1,6 @@
 node{
    stage('SCM Checkout'){
-     git 'https://github.com/Arunpandian1806/my-app.git'
+     git branch: 'main', url: 'https://github.com/Arunpandian1806/my-app.git'
    }
    stage('Compile-Package'){
 
@@ -24,9 +24,9 @@ node{
    sh 'docker push 9677250/myweb:0.0.2'
    }
    stage('Nexus Image Push'){
-   sh "docker login -u admin -p admin123 65.2.123.80:8083"
-   sh "docker tag saidamo/myweb:0.0.2 65.2.123.80:8083/damo:1.0.0"
-   sh 'docker push 65.2.123.80:8083/damo:1.0.0'
+   sh "docker login -u admin -p admin123 3.1.84.37:8083"
+   sh "docker tag 9677250/myweb:0.0.2 3.1.84.37:8083/app:1.0.0"
+   sh 'docker push 3.1.84.37:8083/app:1.0.0'
    }
    stage('Remove Previous Container'){
 	try{
@@ -35,7 +35,7 @@ node{
 		//  do nothing if there is an exception
 	}
    stage('Docker deployment'){
-   sh 'docker run -d -p 8090:8080 --name tomcattest saidamo/myweb:0.0.2' 
+   sh 'docker run -d -p 8090:8080 --name tomcattest 9677250/myweb:0.0.2' 
    }
 }
 }
