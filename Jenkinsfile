@@ -1,5 +1,5 @@
 node{
-   stage('SCM Checkout'){
+   stage('SCM Checkout latest'){
      git branch: 'main', url: 'https://github.com/Arunpandian1806/my-app.git'
    }
    stage('Compile-Package'){
